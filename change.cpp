@@ -5,6 +5,13 @@ using namespace std;
 
 bool changeM(int C, const std::vector<int>& coins, std::vector<int>& res) 
 {
+
+    if (C == 0) 
+    {
+    res.clear();
+    return false;
+    }
+
     int n = static_cast<int>(coins.size()); 
     res.clear();
 
