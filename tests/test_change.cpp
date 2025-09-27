@@ -37,6 +37,16 @@ TEST(ChangeTest, UseAllCoins) {
     EXPECT_EQ(res, expected);
 }
 
+TEST(ChangeTest, ZeroChange)
+{
+   std::vector<int> coins = {1,2,5};
+   std::vector<int> res;
+   
+   bool result = changeM(0, coins, res);
+   EXPECT_FALSE(result);
+   EXPECT_TRUE(res.empty());
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
