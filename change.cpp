@@ -39,10 +39,21 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
     res.clear();
 
     std::vector<int> A(n, 0);
-    for (int i = 0; i < n; ++i) {
-        int r = C / sortedCoins[i].m;
-        A[i] = r;
-        C = C % sortedCoins[i].m;
+    for (int i = 0; i < n; ++i) 
+    {
+      int r= C / sortedCoins[i].m;
+      
+      if(sortedCoins[i].c < r)
+      {
+        A[i] = sortedCoins[i].c;
+        C = C - sortedCoins[i].m*sortedCoins[i].c;
+      }
+     
+      if(sortedCoins[i].c >= r)
+      {
+      A[i] = r;
+      C = C % sortedCoins[i].m;
+      }
     }
     
     if(C > 0)
