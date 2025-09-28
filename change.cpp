@@ -8,7 +8,7 @@ bool changeM(int C, const std::vector<int>& coins, std::vector<int>& res)
     if (C == 0) 
     {
     res.clear();
-    return false;
+    return true;
     }
 
    //сортировка монет, но лучше конечно просто sort

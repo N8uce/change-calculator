@@ -48,7 +48,7 @@ TEST(ChangeTest, ZeroChange)
    std::vector<int> res;
    
    bool result = changeM(0, coins, res);
-   EXPECT_FALSE(result);
+   EXPECT_TRUE(result);;
    EXPECT_TRUE(res.empty());
 }
 
