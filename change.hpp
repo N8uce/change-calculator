@@ -1,4 +1,9 @@
 #pragma once
 #include <vector>
 
-bool changeM(int C, const std::vector<int>& coins, std::vector<int>& res);
+struct Coin {
+    int m; 
+    int c; 
+};
+
+bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res);
