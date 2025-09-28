@@ -60,6 +60,17 @@ TEST(ChangeTest, UnsortedCoins) {
     EXPECT_EQ(res, std::vector<int>({10, 2}));
 }
 
+//6
+TEST(ChangeTest, NotEnoughCoins) {
+    std::vector<Coin> coins = {{5, 1}, {2, 1}}; 
+    std::vector<int> res;
+
+    bool result = changeM(10, coins, res);
+    EXPECT_FALSE(result);
+    EXPECT_TRUE(res.empty());
+}
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
