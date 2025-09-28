@@ -35,11 +35,11 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
     }
 
 
-    int n = static_cast<int>(coins.size()); 
+    //навсякий
     res.clear();
 
-    std::vector<int> A(n, 0);
-    for (int i = 0; i < n; ++i) 
+    std::vector<int> A(sortedCoins.size(), 0);
+    for (int i = 0; i < sortedCoins.size(); ++i) 
     {
       int r= C / sortedCoins[i].m;
       
@@ -59,7 +59,7 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
     if(C > 0)
        return false;
     
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < sortedCoins.size(); ++i) {
         for (int j = 0; j < A[i]; ++j)
             res.push_back(sortedCoins[i].m);
     }
