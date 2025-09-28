@@ -40,10 +40,7 @@ bool changeM(int C, const std::vector<int>& coins, std::vector<int>& res)
     }
     
     if(C > 0)
-    {
-       std::cout << "Сдачу выдать невозможно";
        return false;
-    }
     
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < A[i]; ++j)
