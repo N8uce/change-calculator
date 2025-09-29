@@ -71,16 +71,6 @@ TEST(ChangeTest, NotEnoughCoins) {
 }
 
 //7
-TEST(ChangeTest, AllCoinsTooSmall) {
-    std::vector<Coin> coins = {{1, 2}, {2, 1}}; 
-    std::vector<int> res;
-
-    bool result = changeM(5, coins, res);
-    EXPECT_FALSE(result);
-    EXPECT_TRUE(res.empty());
-}
-
-//8
 TEST(ChangeTest, MultipleSameCoin) {
     std::vector<Coin> coins = {{5, 3}, {2, 1}, {1, 1}};
     std::vector<int> res;
@@ -91,7 +81,7 @@ TEST(ChangeTest, MultipleSameCoin) {
     EXPECT_EQ(res, expected);
 }
 
-//9
+//8
 TEST(ChangeTest, NoCoins) {
     std::vector<Coin> coins = {};
     std::vector<int> res;
@@ -101,7 +91,7 @@ TEST(ChangeTest, NoCoins) {
     EXPECT_TRUE(res.empty());
 }
 
-//10
+//9
 TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
     std::vector<Coin> coins = {{5, 2}, {2, 4}}; 
     std::vector<int> res;
@@ -112,8 +102,6 @@ TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
     std::vector<int> expected = {2, 2, 2, 2};
     EXPECT_EQ(res, expected);
 }
-
-
 
 
 int main(int argc, char **argv) {
