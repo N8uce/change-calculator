@@ -1,15 +1,14 @@
 #include "change.hpp"
 #include <vector>
 
-const int INF = 1e9; 
+constexpr int INF = 1e9;
 
 bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res) 
 {
-    if (C == 0) 
-    {
-    res.clear();
-    return true;
-    }
+   res.clear();
+
+   if (C == 0) 
+   return true;
 
    //сортировка монет, но лучше конечно просто sort
    int temp;
@@ -35,7 +34,6 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
       }
     }
 
-   res.clear();
    std::vector<int> A(sortedCoins.size(), 0);
    std::vector<int> F(C+1,INF);
    F[0] = 0;
@@ -75,7 +73,7 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
       {
      for (int i = 0; i < sortedCoins.size(); ++i) {
          for (int j = 0; j < A[i]; ++j)
-        res.push_back(sortedCoins[i].m);
+            res.push_back(sortedCoins[i].m);
          }
 
        return true;
