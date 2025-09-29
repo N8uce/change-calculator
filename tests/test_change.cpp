@@ -101,6 +101,19 @@ TEST(ChangeTest, NoCoins) {
     EXPECT_TRUE(res.empty());
 }
 
+//10
+TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
+    std::vector<Coin> coins = {{5, 2}, {2, 4}}; 
+    std::vector<int> res;
+
+    bool result = changeM(8, coins, res);
+    EXPECT_TRUE(result);
+
+    std::vector<int> expected = {4, 4, 4, 4};
+    EXPECT_EQ(res, expected);
+}
+
+
 
 
 int main(int argc, char **argv) {
