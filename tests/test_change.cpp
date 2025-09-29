@@ -109,7 +109,7 @@ TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
     bool result = changeM(8, coins, res);
     EXPECT_TRUE(result);
 
-    std::vector<int> expected = {4, 4, 4, 4};
+    std::vector<int> expected = {2, 2, 2, 2};
     EXPECT_EQ(res, expected);
 }
 
