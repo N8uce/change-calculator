@@ -5,10 +5,10 @@ constexpr int INF = 1'000'000'000;
 
 bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res) 
 {
-   //зануляем res, если вдруг будет 
+   //очищаем res, если вдруг будет 
    //повторное использование функции
    res.clear();
-
+   //для случая если изначально сдача равна 0
    if (C == 0) 
    return true;
 
@@ -20,10 +20,10 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
           });
 
    std::vector<int> A(sortedCoins.size(), 0);
-   std::vector<int> F(C+1,INF);
+   std::vector<int> F(C+1,INF);//DP массив
    F[0] = 0;
 
-   //динамическое решение, чтобы точно найти комбинацию
+   //динамическое решение(DP), чтобы точно найти комбинацию
    for (int i = 0; i < sortedCoins.size(); i++) 
    {
     int coin = sortedCoins[i].m;
@@ -35,35 +35,30 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
              }
          }
    }
-      //получаем ответ или не получаем
-      if(F[C] != INF)
-      {
-       while(C != 0)
-       {
-          for (int i = 0; i < sortedCoins.size();i++)
-          {
-            
-             if (C - sortedCoins[i].m >= 0 && (F[C] == (F[C - sortedCoins[i].m] + 1)) && A[i] < sortedCoins[i].c)
-             {
-                A[i] +=1;
-                C -= sortedCoins[i].m;
-                break;
-             }
-            }
-       }
-    }
-     if (C == 0)
-      {
-     for (int i = 0; i < sortedCoins.size(); ++i) {
-         for (int j = 0; j < A[i]; ++j)
-            res.push_back(sortedCoins[i].m);
-         }
 
-       return true;
-      }
-       
-      if (C > 0)
+   //если невозможно выдать сдачу
+   if (F[C] == INF)
       return false;
-
-return false;
+   //если решение есть, ответ восстанавливается
+   while(C != 0)
+   {
+      for (int i = 0; i < sortedCoins.size();i++)
+      {
+      if (C - sortedCoins[i].m >= 0 && 
+         (F[C] == (F[C - sortedCoins[i].m] + 1)) && 
+         A[i] < sortedCoins[i].c)
+         {
+            A[i] +=1;
+            C -= sortedCoins[i].m;
+            break;
+         }
+      }
+   }
+       
+   //ответик
+    for (size_t i = 0; i < sortedCoins.size(); ++i) {
+        for (int j = 0; j < A[i]; ++j)
+            res.push_back(sortedCoins[i].m);
+    }
+return true;
 }
