@@ -1,7 +1,7 @@
 #include "change.hpp"
 #include <vector>
-
-constexpr int INF = 1e9;
+#include <algorithm>
+constexpr int INF = 1'000'000'000;
 
 bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res) 
 {
