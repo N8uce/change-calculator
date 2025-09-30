@@ -1,38 +1,23 @@
 #include "change.hpp"
 #include <vector>
-
-constexpr int INF = 1e9;
+#include <algorithm>
+constexpr int INF = 1'000'000'000;
 
 bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res) 
 {
+   //зануляем res, если вдруг будет 
+   //повторное использование функции
    res.clear();
 
    if (C == 0) 
    return true;
 
-   //сортировка монет, но лучше конечно просто sort
-   int temp;
-   int temp1;
-   
+   //сортировка монет
    std::vector<Coin> sortedCoins = coins;
-   for(int i = 0;i<sortedCoins.size();i++)
-   {
-      for(int j = 0; j<sortedCoins.size();j++)
-      {
-
-         if(sortedCoins[i].m > sortedCoins[j].m)
-         {
-            temp = sortedCoins[i].m;
-            sortedCoins[i].m = sortedCoins[j].m;
-            sortedCoins[j].m = temp;
-
-            temp1 = sortedCoins[i].c;
-            sortedCoins[i].c = sortedCoins[j].c;
-            sortedCoins[j].c = temp1;
-
-         }
-      }
-    }
+   std::sort(sortedCoins.begin(), sortedCoins.end(),
+          [](const Coin& a, const Coin& b) {
+              return a.m > b.m; //по убыванию номинала
+          });
 
    std::vector<int> A(sortedCoins.size(), 0);
    std::vector<int> F(C+1,INF);
@@ -50,7 +35,6 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
              }
          }
    }
-      
       //получаем ответ или не получаем
       if(F[C] != INF)
       {
@@ -68,7 +52,6 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
             }
        }
     }
-
      if (C == 0)
       {
      for (int i = 0; i < sortedCoins.size(); ++i) {
@@ -84,4 +67,3 @@ bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res)
 
 return false;
 }
-
