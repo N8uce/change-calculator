@@ -103,6 +103,26 @@ TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
     EXPECT_EQ(res, expected);
 }
 
+// 10
+TEST(ChangeTest, ManyOperationsStressTest) {
+    std::vector<Coin> coins = {
+        {100, 50}, {50, 100}, {20, 200}, {10, 500}, {5, 1000}, {2, 2000}, {1, 5000}
+    };
+
+    for (int target = 0; target <= 5000; target += 37) {  
+        std::vector<int> res;
+        bool result = changeM(target, coins, res);
+
+        if (result) {
+            int sum = 0;
+            for (int c : res) sum += c;
+            EXPECT_EQ(sum, target);
+        } else {
+            EXPECT_TRUE(res.empty());
+        }
+    }
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

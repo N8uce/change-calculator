@@ -6,4 +6,4 @@ struct Coin {
     int c; 
 };
 
-bool changeM(int C, const std::vector<Coin>& coins, std::vector<int>& res);
+bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res);
