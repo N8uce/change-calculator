@@ -123,6 +123,19 @@ TEST(ChangeTest, ManyOperationsStressTest) {
     }
 }
 
+// 11
+TEST(ChangeTest, NegativeTarget) {
+    std::vector<Coin> coins = {{1,5}, {2,3}, {5,2}};
+    std::vector<int> res;
+
+    bool result = changeM(-10, coins, res);
+
+    EXPECT_FALSE(result);
+    
+    EXPECT_TRUE(res.empty());
+}
+
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
