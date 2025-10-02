@@ -227,6 +227,20 @@ TEST(ChangeTest, LargeAmountWithSolution) {
     EXPECT_EQ(sum, amount);
 }
 
+// 20
+TEST(ChangeTest, ExtremeCoinValue) {
+    std::vector<Coin> coins = {{INT_MAX, 1}, {1, 5}};
+    std::vector<int> res;
+
+    bool result = changeM(5, coins, res);
+
+    EXPECT_TRUE(result);
+    EXPECT_EQ(res, std::vector<int>({1,1,1,1,1}));
+}
+
+
+
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
