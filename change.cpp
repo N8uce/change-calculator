@@ -11,6 +11,9 @@ bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res)
    //для случая если изначально сдача равна 0
    if (amount == 0) 
    return true;
+   //если сдача вдруг отрицательная
+   if (amount < 0)
+   return false;
 
    //сортировка монет
    std::vector<Coin> sortedCoins = coins;
