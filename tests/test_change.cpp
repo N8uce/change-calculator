@@ -200,7 +200,7 @@ TEST(ChangeTest, NegativeCoinCounts) {
     EXPECT_TRUE(result);
     EXPECT_EQ(res, std::vector<int>({2,2}));
 }
-// 18 
+// 18  
 TEST(ChangeTest, VeryLargeAmount) {
     std::vector<Coin> coins = {{1, 1'000'000}};
     std::vector<int> res;
@@ -209,7 +209,23 @@ TEST(ChangeTest, VeryLargeAmount) {
 
     EXPECT_FALSE(result);
 }
+// 19
+TEST(ChangeTest, LargeAmountWithSolution) {
+    std::vector<Coin> coins = {
+        {1000000, 1000}, 
+        {1000, 1000},     
+        {1, 1000}         
+    };
 
+    std::vector<int> res;
+    int amount = 1'234'567;
+
+    bool result = changeM(amount, coins, res);
+    EXPECT_TRUE(result);
+    int sum = 0;
+    for (int c : res) sum += c;
+    EXPECT_EQ(sum, amount);
+}
 
 
 int main(int argc, char **argv) {
