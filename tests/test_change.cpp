@@ -135,6 +135,17 @@ TEST(ChangeTest, NegativeTarget) {
     EXPECT_TRUE(res.empty());
 }
 
+// 12
+TEST(ChangeTest, OnlyOneNominalMultipleCoins) {
+    std::vector<Coin> coins = {{5, 4}};
+    std::vector<int> res;
+
+    bool result = changeM(15, coins, res);
+    EXPECT_TRUE(result);
+
+    std::vector<int> expected = {5, 5, 5};
+    EXPECT_EQ(res, expected);
+}
 
 
 int main(int argc, char **argv) {
