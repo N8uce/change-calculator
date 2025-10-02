@@ -15,8 +15,15 @@ bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res)
    if (amount < 0)
    return false;
 
+   //фильтрация монет
+   std::vector<Coin> filteredCoins;
+   for (size_t i = 0; i < coins.size(); i++) {
+    if (coins[i].m > 0 && coins[i].c > 0) {
+        filteredCoins.push_back(coins[i]);
+    }
+}
    //сортировка монет
-   std::vector<Coin> sortedCoins = coins;
+   std::vector<Coin> sortedCoins = filteredCoins;
    std::sort(sortedCoins.begin(), sortedCoins.end(),
           [](const Coin& a, const Coin& b) {
               return a.m > b.m; //по убыванию номинала
