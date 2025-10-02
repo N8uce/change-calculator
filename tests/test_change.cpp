@@ -161,13 +161,12 @@ TEST(ChangeTest, CoinWithZeroCount) {
 
 // 14
 TEST(ChangeTest, DuplicateDenominations) {
-    std::vector<Coin> coins = {{5,1}, {5,2}, {2,3}};
+    std::vector<Coin> coins = {{5,1}, {5,1}, {2,3}};
     std::vector<int> res;
     bool result = changeM(10, coins, res);
     EXPECT_TRUE(result);
-    int sum = 0;
-    for (int c : res) sum += c;
-    EXPECT_EQ(sum, 10);
+    std::vector<int> expected = {5, 5}; 
+    EXPECT_EQ(res, expected);
 }
 
 
