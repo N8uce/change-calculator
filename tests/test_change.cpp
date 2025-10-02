@@ -190,6 +190,17 @@ TEST(ChangeTest, NegativeCoinValue) {
     EXPECT_EQ(res, std::vector<int>({2,2}));
 }
 
+// 17
+TEST(ChangeTest, NegativeCoinCounts) {
+    std::vector<Coin> coins = {{5, -20}, {2, 2}};
+    std::vector<int> res;
+
+    bool result = changeM(4, coins, res);
+
+    EXPECT_TRUE(result);
+    EXPECT_EQ(res, std::vector<int>({2,2}));
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
