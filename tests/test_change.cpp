@@ -147,6 +147,17 @@ TEST(ChangeTest, OnlyOneNominalMultipleCoins) {
     EXPECT_EQ(res, expected);
 }
 
+// 13
+TEST(ChangeTest, CoinWithZeroCount) {
+    std::vector<Coin> coins = {{5, 0}, {2, 3}, {1, 5}}; 
+    std::vector<int> res;
+
+    bool result = changeM(7, coins, res);
+    EXPECT_TRUE(result);
+
+    std::vector<int> expected = {2, 2, 2, 1}; 
+    EXPECT_EQ(res, expected);
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
