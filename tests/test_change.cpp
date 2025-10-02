@@ -60,7 +60,7 @@ TEST(ChangeTest, UnsortedCoins) {
     EXPECT_EQ(res, std::vector<int>({10, 2}));
 }
 
-//6
+// 6
 TEST(ChangeTest, NotEnoughCoins) {
     std::vector<Coin> coins = {{5, 1}, {2, 1}}; 
     std::vector<int> res;
@@ -70,7 +70,7 @@ TEST(ChangeTest, NotEnoughCoins) {
     EXPECT_TRUE(res.empty());
 }
 
-//7
+// 7
 TEST(ChangeTest, MultipleSameCoin) {
     std::vector<Coin> coins = {{5, 3}, {2, 1}, {1, 1}};
     std::vector<int> res;
@@ -81,7 +81,7 @@ TEST(ChangeTest, MultipleSameCoin) {
     EXPECT_EQ(res, expected);
 }
 
-//8
+// 8
 TEST(ChangeTest, NoCoins) {
     std::vector<Coin> coins = {};
     std::vector<int> res;
@@ -91,7 +91,7 @@ TEST(ChangeTest, NoCoins) {
     EXPECT_TRUE(res.empty());
 }
 
-//9
+// 9
 TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
     std::vector<Coin> coins = {{5, 2}, {2, 4}}; 
     std::vector<int> res;
@@ -169,6 +169,16 @@ TEST(ChangeTest, DuplicateDenominations) {
     EXPECT_EQ(res, expected);
 }
 
+// 15
+TEST(ChangeTest, ZeroValueCoinShouldNotHelp) {
+    std::vector<Coin> coins = {{0, 5}, {2, 1}};
+    std::vector<int> res;
+
+    bool result = changeM(4, coins, res);
+
+    EXPECT_FALSE(result);
+    EXPECT_TRUE(res.empty());
+}
 
 
 int main(int argc, char **argv) {
