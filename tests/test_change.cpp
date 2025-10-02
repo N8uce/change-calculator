@@ -200,6 +200,16 @@ TEST(ChangeTest, NegativeCoinCounts) {
     EXPECT_TRUE(result);
     EXPECT_EQ(res, std::vector<int>({2,2}));
 }
+// 18 
+TEST(ChangeTest, VeryLargeAmount) {
+    std::vector<Coin> coins = {{1, 1'000'000}};
+    std::vector<int> res;
+
+    bool result = changeM(1'000'000'000, coins, res);
+
+    EXPECT_FALSE(result);
+}
+
 
 
 int main(int argc, char **argv) {
