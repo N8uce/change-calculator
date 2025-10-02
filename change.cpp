@@ -21,7 +21,11 @@ bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res)
     if (coins[i].m > 0 && coins[i].c > 0) {
         filteredCoins.push_back(coins[i]);
     }
-}
+   }
+   //если нет нормальных монет, 
+   //то нельзя с этим работать
+   if (filteredCoins.empty()) return false;
+
    //сортировка монет
    std::vector<Coin> sortedCoins = filteredCoins;
    std::sort(sortedCoins.begin(), sortedCoins.end(),
