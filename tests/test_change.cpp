@@ -159,6 +159,19 @@ TEST(ChangeTest, CoinWithZeroCount) {
     EXPECT_EQ(res, expected);
 }
 
+// 14
+TEST(ChangeTest, DuplicateDenominations) {
+    std::vector<Coin> coins = {{5,1}, {5,2}, {2,3}};
+    std::vector<int> res;
+    bool result = changeM(10, coins, res);
+    EXPECT_TRUE(result);
+    int sum = 0;
+    for (int c : res) sum += c;
+    EXPECT_EQ(sum, 10);
+}
+
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
