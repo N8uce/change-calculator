@@ -70,7 +70,7 @@ bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res)
         }
     }
 
-    // если всех монет вместе не хватает на сумму сразу false
+    // если всех монет вместе не хватает на суммусразу false
     if (total < amount1)
         return false;
 
@@ -103,8 +103,7 @@ bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res)
             for (int i = 0; i < sortedCoins.size(); i++) {
                 if (amount1 - sortedCoins[i].m >= 0 &&
                     (F[amount1] == (F[amount1 - sortedCoins[i].m] + 1)) &&
-                    A[i] < sortedCoins[i].c) 
-                {
+                    A[i] < sortedCoins[i].c) {
                     A[i] += 1;
                     amount1 -= sortedCoins[i].m;
                     break;
