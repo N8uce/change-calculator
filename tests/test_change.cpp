@@ -237,9 +237,14 @@ TEST(ChangeTest, ExtremeCoinValue) {
     EXPECT_TRUE(result);
     EXPECT_EQ(res, std::vector<int>({1,1,1,1,1}));
 }
-
-
-
+// 21
+TEST(ChangeTest, SimpleTest) {
+    std::vector<Coin> coins = {{10, 1},{5,1},{2,3}}; 
+    std::vector<int> res;
+   
+    bool result = changeM(16, coins, res);
+    EXPECT_TRUE(result); 
+}
 
 
 int main(int argc, char **argv) {
