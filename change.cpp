@@ -70,7 +70,7 @@ bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res)
         }
     }
 
-    // если всех монет вместе не хватает на суммусразу false
+    // если всех монет вместе не хватает на сумму сразу false
     if (total < amount1)
         return false;
 
