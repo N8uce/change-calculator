@@ -4,7 +4,7 @@
 
 // 1
 TEST(ChangeTest, ExactChangePossible) {
-    std::vector<Coin> coins = {{100,1}, {50,1}, {10,3}, {5,1}, {2,1}, {1,1}};
+    std::vector<Coin> coins = {{100, 1}, {50, 1}, {10, 3}, {5, 1}, {2, 1}, {1, 1}};
     std::vector<int> res;
 
     bool result = changeM(186, coins, res);
@@ -20,7 +20,7 @@ TEST(ChangeTest, ExactChangePossible) {
 
 // 2
 TEST(ChangeTest, ChangeNotPossible) {
-    std::vector<Coin> coins = {{5,1}, {3,1}};
+    std::vector<Coin> coins = {{5, 1}, {3, 1}};
     std::vector<int> res;
 
     bool result = changeM(6, coins, res);
@@ -30,7 +30,7 @@ TEST(ChangeTest, ChangeNotPossible) {
 
 // 3
 TEST(ChangeTest, UseAllCoins) {
-    std::vector<Coin> coins = {{5,1}, {3,1}, {1,1}};
+    std::vector<Coin> coins = {{5, 1}, {3, 1}, {1, 1}};
     std::vector<int> res;
 
     bool result = changeM(9, coins, res);
@@ -42,7 +42,7 @@ TEST(ChangeTest, UseAllCoins) {
 
 // 4
 TEST(ChangeTest, ZeroChange) {
-    std::vector<Coin> coins = {{1,5}, {2,3}, {5,2}};
+    std::vector<Coin> coins = {{1, 5}, {2, 3}, {5, 2}};
     std::vector<int> res;
 
     bool result = changeM(0, coins, res);
@@ -52,7 +52,7 @@ TEST(ChangeTest, ZeroChange) {
 
 // 5
 TEST(ChangeTest, UnsortedCoins) {
-    std::vector<Coin> coins = {{2,2}, {10,1}, {1,3}, {50,1}};
+    std::vector<Coin> coins = {{2, 2}, {10, 1}, {1, 3}, {50, 1}};
     std::vector<int> res;
 
     bool result = changeM(12, coins, res);
@@ -62,7 +62,7 @@ TEST(ChangeTest, UnsortedCoins) {
 
 // 6
 TEST(ChangeTest, NotEnoughCoins) {
-    std::vector<Coin> coins = {{5, 1}, {2, 1}}; 
+    std::vector<Coin> coins = {{5, 1}, {2, 1}};
     std::vector<int> res;
 
     bool result = changeM(10, coins, res);
@@ -77,6 +77,7 @@ TEST(ChangeTest, MultipleSameCoin) {
 
     bool result = changeM(15, coins, res);
     EXPECT_TRUE(result);
+
     std::vector<int> expected = {5, 5, 5};
     EXPECT_EQ(res, expected);
 }
@@ -93,7 +94,7 @@ TEST(ChangeTest, NoCoins) {
 
 // 9
 TEST(ChangeTest, GreedyAlgorithmFailsToFormTarget) {
-    std::vector<Coin> coins = {{5, 2}, {2, 4}}; 
+    std::vector<Coin> coins = {{5, 2}, {2, 4}};
     std::vector<int> res;
 
     bool result = changeM(8, coins, res);
@@ -109,7 +110,7 @@ TEST(ChangeTest, ManyOperationsStressTest) {
         {100, 50}, {50, 100}, {20, 200}, {10, 500}, {5, 1000}, {2, 2000}, {1, 5000}
     };
 
-    for (int target = 0; target <= 5000; target += 37) {  
+    for (int target = 0; target <= 5000; target += 37) {
         std::vector<int> res;
         bool result = changeM(target, coins, res);
 
@@ -125,13 +126,11 @@ TEST(ChangeTest, ManyOperationsStressTest) {
 
 // 11
 TEST(ChangeTest, NegativeTarget) {
-    std::vector<Coin> coins = {{1,5}, {2,3}, {5,2}};
+    std::vector<Coin> coins = {{1, 5}, {2, 3}, {5, 2}};
     std::vector<int> res;
 
     bool result = changeM(-10, coins, res);
-
     EXPECT_FALSE(result);
-    
     EXPECT_TRUE(res.empty());
 }
 
@@ -149,23 +148,25 @@ TEST(ChangeTest, OnlyOneNominalMultipleCoins) {
 
 // 13
 TEST(ChangeTest, CoinWithZeroCount) {
-    std::vector<Coin> coins = {{5, 0}, {2, 3}, {1, 5}}; 
+    std::vector<Coin> coins = {{5, 0}, {2, 3}, {1, 5}};
     std::vector<int> res;
 
     bool result = changeM(7, coins, res);
     EXPECT_TRUE(result);
 
-    std::vector<int> expected = {2, 2, 2, 1}; 
+    std::vector<int> expected = {2, 2, 2, 1};
     EXPECT_EQ(res, expected);
 }
 
 // 14
 TEST(ChangeTest, DuplicateDenominations) {
-    std::vector<Coin> coins = {{5,1}, {5,1}, {2,3}};
+    std::vector<Coin> coins = {{5, 1}, {5, 1}, {2, 3}};
     std::vector<int> res;
+
     bool result = changeM(10, coins, res);
     EXPECT_TRUE(result);
-    std::vector<int> expected = {5, 5}; 
+
+    std::vector<int> expected = {5, 5};
     EXPECT_EQ(res, expected);
 }
 
@@ -175,19 +176,18 @@ TEST(ChangeTest, ZeroValueCoinShouldNotHelp) {
     std::vector<int> res;
 
     bool result = changeM(4, coins, res);
-
     EXPECT_FALSE(result);
     EXPECT_TRUE(res.empty());
 }
+
 // 16
 TEST(ChangeTest, NegativeCoinValue) {
     std::vector<Coin> coins = {{-5, 2}, {2, 2}};
     std::vector<int> res;
 
     bool result = changeM(4, coins, res);
-
     EXPECT_TRUE(result);
-    EXPECT_EQ(res, std::vector<int>({2,2}));
+    EXPECT_EQ(res, std::vector<int>({2, 2}));
 }
 
 // 17
@@ -196,25 +196,25 @@ TEST(ChangeTest, NegativeCoinCounts) {
     std::vector<int> res;
 
     bool result = changeM(4, coins, res);
-
     EXPECT_TRUE(result);
-    EXPECT_EQ(res, std::vector<int>({2,2}));
+    EXPECT_EQ(res, std::vector<int>({2, 2}));
 }
-// 18  
+
+// 18
 TEST(ChangeTest, VeryLargeAmount) {
     std::vector<Coin> coins = {{1, 1'000'000}};
     std::vector<int> res;
 
     bool result = changeM(1'000'000'000, coins, res);
-
     EXPECT_FALSE(result);
 }
+
 // 19
 TEST(ChangeTest, LargeAmountWithSolution) {
     std::vector<Coin> coins = {
-        {1000000, 1000}, 
-        {1000, 1000},     
-        {1, 1000}         
+        {1'000'000, 1000},
+        {1000, 1000},
+        {1, 1000}
     };
 
     std::vector<int> res;
@@ -222,6 +222,7 @@ TEST(ChangeTest, LargeAmountWithSolution) {
 
     bool result = changeM(amount, coins, res);
     EXPECT_TRUE(result);
+
     int sum = 0;
     for (int c : res) sum += c;
     EXPECT_EQ(sum, amount);
@@ -233,21 +234,20 @@ TEST(ChangeTest, ExtremeCoinValue) {
     std::vector<int> res;
 
     bool result = changeM(5, coins, res);
-
     EXPECT_TRUE(result);
-    EXPECT_EQ(res, std::vector<int>({1,1,1,1,1}));
+    EXPECT_EQ(res, std::vector<int>({1, 1, 1, 1, 1}));
 }
+
 // 21
 TEST(ChangeTest, SimpleTest) {
     std::vector<Coin> coins = {{10, 1},{5,1},{2,3}}; 
     std::vector<int> res;
-   
+
     bool result = changeM(16, coins, res);
     EXPECT_TRUE(result); 
 }
 
-
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
