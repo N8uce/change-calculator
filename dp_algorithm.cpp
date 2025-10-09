@@ -10,13 +10,13 @@ int DynamicProgrammingAlgorithm(int amount, const std::vector<Coin>& sortedCoins
     minCoinsForAmount[0] = 0;
 
     for (int i = 0; i < sortedCoins.size(); i++) {
-        int coin = sortedCoins[i].m;   //номинал монеты
-        int count = sortedCoins[i].c;  //количество монет
+        int coin = sortedCoins[i].denomination;   //номинал монеты
+        int count = sortedCoins[i].count;  //количество монет
 
         for (int k = 1; k <= count; k++) { 
             for (int S = amount; S >= coin; S--) {
-                if (F[S - coin] + 1 < F[S])
-                    F[S] = F[S - coin] + 1;
+                if (minCoinsForAmount[S - coin] + 1 < minCoinsForAmount[S])
+                    minCoinsForAmount[S] = minCoinsForAmount[S - coin] + 1;
             }
         }
     }
