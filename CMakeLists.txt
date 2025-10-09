@@ -12,7 +12,13 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_library(change change.cpp)
+add_library(change
+    change.cpp
+    greedy_algorithm.cpp
+    dp_algorithm.cpp
+    utils.cpp
+)
+
 target_include_directories(change PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(test_change tests/test_change.cpp)

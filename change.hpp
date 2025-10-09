@@ -2,8 +2,8 @@
 #include <vector>
 
 struct Coin {
-    int m; 
-    int c; 
+    int denomination; 
+    int count; 
 };
 
-bool changeM(int amount, const std::vector<Coin>& coins, std::vector<int>& res);
+bool MakeChange(int amount, const std::vector<Coin>& coins, std::vector<int>& res);
