@@ -5,23 +5,23 @@ constexpr int INF = 1'000'000'000;
 
 int DynamicProgrammingAlgorithm(int amount, const std::vector<Coin>& sortedCoins, std::vector<int>& resultCounts)
 {
+    //массив для DP
     std::vector<int> minCoinsForAmount(amount + 1, INF);
     minCoinsForAmount[0] = 0;
 
-    for (const auto& coin : sortedCoins) {
-        int coinValue = coin.denomination;
-        int remainingCount = coin.count;
+    for (int i = 0; i < sortedCoins.size(); i++) {
+        int coin = sortedCoins[i].m;   //номинал монеты
+        int count = sortedCoins[i].c;  //количество монет
 
-        for (int batch = 1; remainingCount > 0; batch <<= 1) {
-            int used = std::min(batch, remainingCount);
-            for (int sum = amount; sum >= used * coinValue; --sum) {
-                if (minCoinsForAmount[sum - used * coinValue] + used < minCoinsForAmount[sum])
-                    minCoinsForAmount[sum] = minCoinsForAmount[sum - used * coinValue] + used;
+        for (int k = 1; k <= count; k++) { 
+            for (int S = amount; S >= coin; S--) {
+                if (F[S - coin] + 1 < F[S])
+                    F[S] = F[S - coin] + 1;
             }
-            remainingCount -= used;
         }
     }
 
+    // если алгоритм не нашёл комбинацию, то он завершается
     if (minCoinsForAmount[amount] == INF)
         return amount;
 
